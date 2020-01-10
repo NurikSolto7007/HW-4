@@ -5,24 +5,40 @@ import java.util.Random;
 public class Main {
 
 
-    public static int bossHealth = 600;
+    public static int bossHealth = 700;
     public static int bossDamage = 50;
     public static String bossDefenceType = "";
-    public static int[] heroesHealth = {260, 270, 300, 400};
-    public static int[] heroesDamage = {10, 20, 5, 10};
+    public static int[] heroesHealth = {260, 270, 300, 400, 350};
+    public static int[] heroesDamage = {10, 20, 5, 10, 7};
     public static String[] heroesAttackType = {"Physical",
-            "Magical", "Mental", "Medical"};
+            "Magical", "Mental",  "Thor",  "Medical"};
 
     public static void main(String[] args) {
         printStatistics();
         while (!isFinished()) {
+            stan();
             round();
         }
     }
+    public static void stan () {
+        Random random = new Random();
+        int r = random.nextInt(3);
+        if (r == 1) {
+            System.out.println("_____________________");
+
+            System.out.println("Thor stunned the Boss");
+            System.out.println("_____________________");
+            bossDamage=0;
+
+        }else {
+            bossDamage=50;
+        }
+    }
+
 
     public static int aibolit(int indexPlayer) {
-        if (heroesHealth[indexPlayer] > 0 && heroesHealth[3] > 0) {
-            return heroesDamage[3] + heroesHealth[indexPlayer];
+        if (heroesHealth[indexPlayer] > 0 && heroesHealth[4] > 0) {
+            return heroesDamage[4] + heroesHealth[indexPlayer];
         }
         return heroesHealth[indexPlayer];
     }
@@ -38,7 +54,7 @@ public class Main {
         heroesHit();
         bossHit();
         printStatistics();
-        for (int i = 0; i <= 2; i++) {
+        for (int i = 0; i <= 3; i++) {
             heroesHealth[i] = aibolit(i);
         }
     }
@@ -99,7 +115,7 @@ public class Main {
         System.out.println("Warrior health: " + heroesHealth[0]);
         System.out.println("Magic health: " + heroesHealth[1]);
         System.out.println("Kinetic health: " + heroesHealth[2]);
-        System.out.println("Medic health: " + heroesHealth[3]);
-        System.out.println("_________________");
+        System.out.println("Medic health: " + heroesHealth[4]);
+        System.out.println("Tor health: " + heroesHealth[3]);
     }
 }
